@@ -1,0 +1,15 @@
+---
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost/cards"
+    username: "postgres"
+    password: "ggff2154"
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
