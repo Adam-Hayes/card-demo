@@ -1,4 +1,4 @@
-package com.example.carddemo.entity;
+package com.example.carddemo.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "person")
-public class PersonEntity {
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +35,5 @@ public class PersonEntity {
 
     private String phoneNumber;
     @OneToMany(mappedBy = "person")
-    private List<CardAccountEntity> cardAccounts = new ArrayList<>();
+    private List<CardAccount> cardAccounts = new ArrayList<>();
 }

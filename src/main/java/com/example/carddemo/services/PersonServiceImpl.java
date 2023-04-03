@@ -2,9 +2,10 @@ package com.example.carddemo.services;
 
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import com.example.carddemo.dto.request.PersonRequestDto;
 import com.example.carddemo.dto.response.PersonResponseDto;
-import com.example.carddemo.entity.PersonEntity;
-import com.example.carddemo.factories.PersonDtoFactory;
+import com.example.carddemo.model.Person;
+import com.example.carddemo.transformer.PersonTransformer;
 import com.example.carddemo.repo.PersonRepository;
 import lombok.AllArgsConstructor;
 
@@ -13,35 +14,20 @@ import lombok.AllArgsConstructor;
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
-    private final PersonDtoFactory personDtoFactory;
+    private final PersonTransformer personTransformer;
 
     @Transactional
     @Override
-    public PersonResponseDto createPerson(final String name, final int age, final String email, final String phoneNumber) {
-
-        final PersonEntity personToSave =
-                PersonEntity.builder().name(name).age(age).email(email).phoneNumber(phoneNumber).build();
-        PersonEntity savedPerson = personRepository.saveAndFlush(personToSave);
-
-        return PersonResponseDto.builder()
-                .id(savedPerson.getId())
-                .name(savedPerson.getName())
-                .age(savedPerson.getAge())
-                .email(savedPerson.getEmail())
-                .phoneNumber(savedPerson.getPhoneNumber())
-                .build();
+    public PersonResponseDto createPerson(final PersonRequestDto personRequest) {
+        final Person personToSave = personTransformer.toPerson(personRequest);
+        Person savedPerson = personRepository.save(personToSave);
+        return personTransformer.toPerson(savedPerson);
     }
 
     @Override
     public PersonResponseDto getPerson(final Long id) {
-        return null;
+       return personRepository.findById(id).map(personTransformer::toPerson).orElseThrow(() -> {
+             throw new RuntimeException("Person not found");
+        });
     }
-
-    //    @Override
-//    public PersonDto getPerson(final Long id){
-//        personRepository.findById(id).orElseThrow(() ->{
-//            new
-//        });
-//        return personDtoFactory.getPerson(person);
-//    }
 }

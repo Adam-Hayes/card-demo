@@ -2,10 +2,10 @@ package com.example.carddemo.repo;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.carddemo.entity.PersonEntity;
+import com.example.carddemo.model.Person;
 
 
-public interface PersonRepository extends JpaRepository<PersonEntity,Long> {
+public interface PersonRepository extends JpaRepository<Person,Long> {
 
-    Optional<PersonEntity> findById(Long id);
+    Optional<Person> findById(Long id);
 }

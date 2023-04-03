@@ -1,9 +1,10 @@
 package com.example.carddemo.services;
 
+import com.example.carddemo.dto.request.PersonRequestDto;
 import com.example.carddemo.dto.response.PersonResponseDto;
 
 public interface PersonService {
 
-    PersonResponseDto createPerson(String name, int age, String email, String phoneNumber);
+    PersonResponseDto createPerson(PersonRequestDto personRequestDto);
     PersonResponseDto getPerson(Long id);
 }

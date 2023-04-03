@@ -1,13 +1,16 @@
-package com.example.carddemo.entity;
+package com.example.carddemo.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.example.carddemo.enums.Currency;
+import com.example.carddemo.enums.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,19 +23,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "card")
-public class CardEntity {
+@Table(name = "card_account")
+public class CardAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String cardNumber;
+    private String accountNumber;
+    private AccountType accountType;
 
-    private Currency currency;
-    private String expirationDate;
-
+    private Double balance;
     @ManyToOne
-    @JoinColumn(name = "card_account_id")
-    private CardAccountEntity cardAccount;
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+    @OneToMany(mappedBy = "cardAccount")
+    private List<Card> cards = new ArrayList<>();
 
 }
