@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CardAccountResponseDto {
+
+    @NotNull
+    private Long personId;
     @NotNull
     private Long id;
     @NotNull

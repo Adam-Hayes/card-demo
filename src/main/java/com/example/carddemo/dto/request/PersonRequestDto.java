@@ -1,6 +1,5 @@
 package com.example.carddemo.dto.request;
 
-import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,5 +21,4 @@ public class PersonRequestDto {
     @NotNull
     private String phoneNumber;
 
-    private List<CardAccountRequestDto> cardAccounts;
 }

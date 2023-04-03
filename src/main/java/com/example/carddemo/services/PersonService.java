@@ -7,4 +7,6 @@ public interface PersonService {
 
     PersonResponseDto createPerson(PersonRequestDto personRequestDto);
     PersonResponseDto getPerson(Long id);
+
+    void deletePerson(Long id);
 }

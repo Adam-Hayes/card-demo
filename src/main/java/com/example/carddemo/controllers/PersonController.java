@@ -1,5 +1,7 @@
 package com.example.carddemo.controllers;
 
+import javax.validation.Valid;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,17 +17,21 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("api/person")
 public class PersonController {
-
     private final PersonService personService;
 
     @PostMapping()
-    public PersonResponseDto createPerson(@RequestBody final PersonRequestDto personRequest ){
+    public PersonResponseDto createPerson(@Valid @RequestBody final PersonRequestDto personRequest) {
 
         return personService.createPerson(personRequest);
     }
 
     @GetMapping("{id}")
-    public PersonResponseDto getPerson(@PathVariable final Long id){
+    public PersonResponseDto getPerson(@PathVariable final Long id) {
         return personService.getPerson(id);
+    }
+
+    @DeleteMapping("{id}")
+    public void deletePerson(@PathVariable final Long id) {
+         personService.deletePerson(id);
     }
 }

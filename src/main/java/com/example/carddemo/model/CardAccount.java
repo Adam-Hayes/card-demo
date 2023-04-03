@@ -2,6 +2,7 @@ package com.example.carddemo.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,7 +38,7 @@ public class CardAccount {
     @JoinColumn(name = "person_id")
     private Person person;
 
-    @OneToMany(mappedBy = "cardAccount")
+    @OneToMany(mappedBy = "cardAccount", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Card> cards = new ArrayList<>();
 
 }
