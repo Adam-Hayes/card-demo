@@ -5,8 +5,8 @@ import com.example.carddemo.dto.response.CardAccountResponseDto;
 
 public interface CardAccountService {
 
-    CardAccountResponseDto createCardAccount(CardAccountRequestDto cardAccountRequest);
+    CardAccountResponseDto createCardAccount(Long personId,CardAccountRequestDto cardAccountRequest);
     CardAccountResponseDto getCardAccount(Long personId,Long cardAccountId);
 
-    void deleteCardAccount(Long personId,Long cardAccountId);
+    void deleteCardAccount(Long cardAccountId);
 }

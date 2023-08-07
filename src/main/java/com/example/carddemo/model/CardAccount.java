@@ -34,6 +34,9 @@ public class CardAccount {
     private AccountType accountType;
 
     private Double balance;
+
+    // TODO: 04.04.2023 add this field
+    //private boolean isDeleted;
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;

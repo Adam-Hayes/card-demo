@@ -1,6 +1,9 @@
 package com.example.carddemo.controllers;
 
+import java.util.List;
 import javax.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.SortDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +24,14 @@ public class PersonController {
 
     @PostMapping()
     public PersonResponseDto createPerson(@Valid @RequestBody final PersonRequestDto personRequest) {
-
         return personService.createPerson(personRequest);
     }
+
+//    @GetMapping
+//    public List<PersonResponseDto> getAllPersons(@SortDefault Pageable pageable){
+//        pageable.
+//       // return personService.getAllPersons();
+//    }
 
     @GetMapping("{id}")
     public PersonResponseDto getPerson(@PathVariable final Long id) {

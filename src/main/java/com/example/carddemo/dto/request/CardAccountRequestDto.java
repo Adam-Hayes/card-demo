@@ -15,13 +15,10 @@ import lombok.NoArgsConstructor;
 public class CardAccountRequestDto {
 
     @NotNull
-    private Long personId;
-    @NotNull
     private String accountNumber;
     @NotNull
-    private AccountType accountType;
+    private String accountType;
     @NotNull
-    private Double balance;
+    private String balance;
 
-    private List<CardRequestDto> cards;
 }
